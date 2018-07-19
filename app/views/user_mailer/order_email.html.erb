@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Hi! <br>
+      Your order has been submitted.
+    </p>
+    <br>
+    <p>
+      <% @order.line_items.each do | item | %>
+        <%= item.product.name %> <%= item.quantity %> <%= sprintf "%.2f", item.total_price_cents/100 %><br>
+      <% end %>
+    </p>
+    <p>Total: <%= sprintf "%.2f", @order.total_cents/100 %></p>
+  </body>
+</html>
