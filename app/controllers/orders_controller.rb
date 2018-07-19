@@ -3,6 +3,8 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @items = @order.line_items.includes(:product)
+    puts "order", @order.inspect
   end
 
   def create

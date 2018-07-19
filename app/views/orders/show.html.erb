@@ -4,8 +4,35 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
 
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Image</td>
+          <td>Quantity</td>
+          <td>Amount</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do | item | %>
+          <tr>
+            <td><%= item.product.name %></td>
+            <td><%= item.product.description %></td>
+            <td><%= image_tag item.product.image.thumb, alt: item.product.name %></td>
+            <td><%= item.quantity %></td>
+            <td><%= sprintf "%.2f", item.total_price_cents/100 %></td>
+        <% end %>
+
+        <tr>
+          <td colspan=4>Total:</td>
+          <td><%= sprintf "%.2f", @order.total_cents/100 %></td>
+        </tr>
+      </tbody>
+    </table>
+
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <h4>Thank you for your order! ----------- <%= @order.email %></h4>
   </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
