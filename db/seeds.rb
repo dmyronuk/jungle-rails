@@ -43,14 +43,14 @@ user1 = User.create!({
   first_name: 'frank',
   last_name: 'tank',
   email: 'frank@tank.com',
-  password_digest: '$2b$10$O4vwxT6tyA66VPFAtv7jjOgF4hmUkX9MQCrHYus04Cr4dK5BJe70K'
+  password_digest: '$2a$10$v3heYdWR3djATnx2ywkK/OtJBUNeGOISICYEwQuZefZIW.fMkuibm'
 })
 
 user2 = User.create!({
   first_name: 'bill',
   last_name: 'mill',
   email: 'bill@mill.com',
-  password_digest: '$2b$10$O4vwxT6tyA66VPFAtv7jjOgF4hmUkX9MQCrHYus04Cr4dK5BJe70K'
+  password_digest: '$2a$10$v3heYdWR3djATnx2ywkK/OtJBUNeGOISICYEwQuZefZIW.fMkuibm'
 })
 
 prod1 = cat1.products.create!({
