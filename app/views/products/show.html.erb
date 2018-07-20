@@ -24,20 +24,16 @@
           <dd><%= @product.price %></dd>
         </dl>
 
+        <div class="card-container">
         <% @product.reviews.reverse.each do | review | %>
-          <div>
-            <div>
-              <%= review.user.first_name %> <%= review.user.last_name %> <%= review.rating %>
-            </div>
-            <div>
-              <%= review.description %>
-            </div>
-          </div>
-
-          <% if review.user == current_user %>
+          <div class="rating-card">
+            <div>User: <%= review.user.first_name %> <%= review.user.last_name %></div>
+            <div>Rating: <%= review.rating %></div>
+            <div>Comment: <%= review.description %></div>
+            <% if review.user == current_user %>
             <%= link_to fa_icon('trash'), [@product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-
+            <% end %>
+          </div>
         <% end %>
 
         <% if current_user %>
@@ -49,6 +45,9 @@
             <%= f.submit "Submit" %>
           <% end %>
         <% end %>
+        </div>
+
+
       </div>
     </div>
 
