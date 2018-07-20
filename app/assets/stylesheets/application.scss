@@ -18,6 +18,11 @@ body {
 
 }
 
+.comment-submit-container{
+  display:flex;
+  flex-direction:column;
+}
+
 .rating-card{
   border:1px solid #aaaaaa;
   border-radius:0.8rem;
@@ -25,4 +30,8 @@ body {
   margin:1rem;
   padding:2rem;
   width:60%;
+}
+
+.submit-btn{
+  margin:1rem 0rem;
 }

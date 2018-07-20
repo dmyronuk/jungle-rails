@@ -37,12 +37,16 @@
         <% end %>
 
         <% if current_user %>
-          <%= form_for [@product, @product.reviews.build] do |f| %>
-            <%= f.label :description %>
-            <%= f.text_area :description %>
-            <%= f.label :rating %>
-            <%= f.select(:rating, [1, 2, 3, 4, 5]) %>
-            <%= f.submit "Submit" %>
+          <div class="comment-submit-container">
+            <%= form_for [@product, @product.reviews.build] do |f| %>
+              <div><%= f.label :description %></div>
+              <%= f.text_area :description %>
+              <div><%= f.label :rating %></div>
+              <%= f.select(:rating, [1, 2, 3, 4, 5]) %>
+              <div class='submit-btn'>
+                <%= f.submit "Submit" %>
+              </div>
+            </div>
           <% end %>
         <% end %>
         </div>
