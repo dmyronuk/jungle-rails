@@ -33,6 +33,11 @@
               <%= review.description %>
             </div>
           </div>
+
+          <% if review.user == current_user %>
+            <%= link_to fa_icon('trash'), [@product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+
         <% end %>
 
         <% if current_user %>
