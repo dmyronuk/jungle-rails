@@ -24,7 +24,7 @@
           <dd><%= @product.price %></dd>
         </dl>
 
-        <% @product.reviews.each do | review | %>
+        <% @product.reviews.reverse.each do | review | %>
           <div>
             <div>
               <%= review.user.first_name %> <%= review.user.last_name %> <%= review.rating %>
@@ -35,14 +35,15 @@
           </div>
         <% end %>
 
-        <%= form_for [@product, @product.reviews.build] do |f| %>
-          <%= f.label :description %>
-          <%= f.text_area :description %>
-          <%= f.label :rating %>
-          <%= f.select(:rating, [1, 2, 3, 4, 5]) %>
-          <%= f.submit "Submit" %>
+        <% if current_user %>
+          <%= form_for [@product, @product.reviews.build] do |f| %>
+            <%= f.label :description %>
+            <%= f.text_area :description %>
+            <%= f.label :rating %>
+            <%= f.select(:rating, [1, 2, 3, 4, 5]) %>
+            <%= f.submit "Submit" %>
+          <% end %>
         <% end %>
-
       </div>
     </div>
 
