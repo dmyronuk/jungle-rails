@@ -1,11 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   describe "Validations" do
-
-    # before :each do
-
-    # end
 
     it "should be valid when all fields are present" do
       @user = User.new(first_name: "Billy", last_name: "Jean", email:"not_lover@one.com", password:"zzzzzzz", password_confirmation:"zzzzzzz")
@@ -55,6 +51,37 @@ RSpec.describe User, type: :model do
       @user = User.new(first_name: "Billy", last_name: "Jean", email:"not_lover@one.com", password:"12345", password_confirmation:"12345")
       @user.save
       expect(@user.errors.full_messages[0]).to eql("Password is too short (minimum is 6 characters)")
+    end
+  end
+
+  describe '.authenticate_with_credentials' do
+
+    it "should be invalid if email does not match password" do
+      @user = User.new(first_name: "Billy", last_name: "Jean", email:"not_lover@one.com", password:"zzzzzzz", password_confirmation:"zzzzzzz")
+      @user.save
+      result = User.authenticate_with_credentials("not_lover@one.com", "bad_password")
+      expect(result).to be nil
+    end
+
+    it "should be valid if email matches password" do
+      @user = User.new(first_name: "Billy", last_name: "Jean", email:"not_lover@one.com", password:"zzzzzzz", password_confirmation:"zzzzzzz")
+      @user.save
+      result = User.authenticate_with_credentials("not_lover@one.com", "zzzzzzz")
+      expect(result).to eq(@user)
+    end
+
+    it "should be valid if the user adds spaces on either side of email" do
+      @user = User.new(first_name: "Billy", last_name: "Jean", email:"not_lover@one.com", password:"zzzzzzz", password_confirmation:"zzzzzzz")
+      @user.save
+      result = User.authenticate_with_credentials("  not_lover@one.com  ", "zzzzzzz")
+      expect(result).to eq(@user)
+    end
+
+    it "should be valid if the user email address is the wrong case" do
+      @user = User.new(first_name: "Billy", last_name: "Jean", email:"not_lover@one.com", password:"zzzzzzz", password_confirmation:"zzzzzzz")
+      @user.save
+      result = User.authenticate_with_credentials("nOt_lOver@one.com", "zzzzzzz")
+      expect(result).to eq(@user)
     end
 
   end
