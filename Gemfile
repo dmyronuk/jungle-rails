@@ -35,12 +35,15 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'stripe'
 gem 'faker'
+gem 'pry-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rspec-rails', '~> 3.5'
+  gem 'pry-rails'
   gem 'byebug'
   gem 'quiet_assets'
   gem 'dotenv-rails'
