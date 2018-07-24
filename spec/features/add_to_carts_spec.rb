@@ -22,7 +22,7 @@ RSpec.feature "Visitor clicks on the cart link and one item is added to cart", t
     visit root_path
 
     # DEBUG / VERIFY
-    save_screenshot
+    #save_screenshot
     find('.product', match: :first).find('.btn-primary').click
     cart = find(:xpath, "//a[@href='/cart']")
     expect(cart).to have_text 'My Cart (1)'
